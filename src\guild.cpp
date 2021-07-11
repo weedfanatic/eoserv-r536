@@ -27,7 +27,7 @@
 #include <utility>
 #include <vector>
 
-std::string RankSerialize(std::array<std::string, 9> list)
+std::string RankSerialize(std::array<std::string, 10> list)
 {
 	std::string serialized;
 
@@ -40,9 +40,9 @@ std::string RankSerialize(std::array<std::string, 9> list)
 	return serialized;
 }
 
-std::array<std::string, 9> RankUnserialize(std::string serialized)
+std::array<std::string, 10> RankUnserialize(std::string serialized)
 {
-	std::array<std::string, 9> list;
+	std::array<std::string, 10> list;
 	std::size_t p = 0;
 	std::size_t lastp = std::numeric_limits<std::size_t>::max();
 	int i = 0;
@@ -52,7 +52,7 @@ std::array<std::string, 9> RankUnserialize(std::string serialized)
 		serialized.push_back(',');
 	}
 
-	while (i < 9 && (p = serialized.find_first_of(',', lastp+1)) != std::string::npos)
+	while (i < 10 && (p = serialized.find_first_of(',', lastp+1)) != std::string::npos)
 	{
 		list[i++] = serialized.substr(lastp+1, p-lastp-1);
 		lastp = p;
@@ -235,7 +235,7 @@ std::shared_ptr<Guild> GuildManager::CreateGuild(std::shared_ptr<Guild_Create> c
 
 			if (character)
 			{
-				guild->AddMember(character, create->leader, false, (character == create->leader) ? 0 : 9);
+				guild->AddMember(character, create->leader, false, (character == create->leader) ? 0 : 10);
 			}
 		}
 
